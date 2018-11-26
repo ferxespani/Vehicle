@@ -10,7 +10,11 @@ namespace Vehicle
     {
         private int MaxNumberPassengers { get; }
 
-        public PassengerCar(string model, int yearOfIssue, int price, string color, int maxNumberPassengers) : base(model, yearOfIssue, price, color)
+        public PassengerCar(string model, int yearOfIssue, int price, string color) : base(model, yearOfIssue, price, color)
+        {
+        }
+
+        public PassengerCar(string model, int yearOfIssue, int price, int maxNumberPassengers) : this(model, yearOfIssue, price, "green")
         {
             MaxNumberPassengers = maxNumberPassengers;
         }
