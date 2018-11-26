@@ -10,13 +10,8 @@ namespace Vehicle
     {
         static void Main(string[] args)
         {
-            Vehicle v = new Lorry("Mazda", 1998, 567, "gray", 122);
-            Vehicle n = new PassengerCar("Mazda", 1998, 455, "blue", 5);
-
-            if (v.Equals(n))
-                Console.WriteLine($"This vehicles:  !{v}! and !{n}! are equal");
-            else
-                Console.WriteLine("This vehicles are not equal");
+            Vehicle k = new PassengerCar("Mazda", 1998, 455, 5);
+            Console.WriteLine(k);
         }
     }
 }
