@@ -14,13 +14,13 @@ namespace Vehicle
         protected string Color;
         protected static int AmountOfCars = 0;
         protected readonly int Discount;
-        protected DateTime d;
+        protected DateTime dateOfManufacturing;
 
 
         public Vehicle(string model, int yearOfIssue, int price, string color)
         {
             Model = model;
-            d = new DateTime(yearOfIssue, 1, 1, 0, 0, 0);
+            dateOfManufacturing = new DateTime(yearOfIssue, 1, 1, 0, 0, 0);
             YearOfIssue = yearOfIssue;
             Price = price;
             Color = color;
@@ -35,8 +35,16 @@ namespace Vehicle
 
         public int GetAgeOfVehicle()
         {
-            int n = DateTimeExtention.Age(d);
-            return n;
+            int n = 0;
+            if(dateOfManufacturing.Year >= DateTime.Now.Year)
+            {
+                return 0;
+            }
+            else
+            {
+                n = DateTimeExtention.Age(dateOfManufacturing);
+                return n;
+            }
         }
 
         public static void GetAmountOfCars()
@@ -55,6 +63,11 @@ namespace Vehicle
             }
             else
                 return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return YearOfIssue.GetHashCode();
         }
     }
 

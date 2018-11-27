@@ -10,7 +10,7 @@ namespace Vehicle
     {
         static void Main(string[] args)
         {
-            var car1 = new PassengerCar("Mazda", 1998, 300, 5);
+            var car1 = new PassengerCar("Mazda", 2018, 300, 5);
             var car2 = new Lorry("Mazda", 1994, 455, "blue", 345);
 
             int Price = car1.getPriceSale();
@@ -28,6 +28,10 @@ namespace Vehicle
             int n1 = car1.GetAgeOfVehicle();
             int n2 = car2.GetAgeOfVehicle();
             Console.WriteLine($"{n1}    {n2}");
+
+            int hash1 = car2.GetHashCode();
+            int hash2 = car1.GetHashCode();
+            Console.WriteLine($"{hash1}   {hash2}");
         }
     }
 
