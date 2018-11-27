@@ -6,37 +6,76 @@ using System.Threading.Tasks;
 
 namespace Vehicle
 {
-    public partial class Vehicle
+    public abstract partial class Vehicle
     {
-        private string Model { get; }
-        private int YearOfIssue { get; }
-        private int Price { get; }
-        private string Color { get; }
+        protected string Model;
+        protected int YearOfIssue;
+        protected int Price;
+        protected string Color;
+        protected static int AmountOfCars = 0;
+        protected readonly int Discount;
+        protected DateTime d;
+
 
         public Vehicle(string model, int yearOfIssue, int price, string color)
         {
             Model = model;
+            d = new DateTime(yearOfIssue, 1, 1, 0, 0, 0);
             YearOfIssue = yearOfIssue;
             Price = price;
             Color = color;
+            Discount = 10;
+            ++AmountOfCars;
         }
 
-        public int getPriceSale()
+        public virtual int getPriceSale()
         {
-            return Price - (Price / 100 * 10);
+            return Price - (Price / 100 * Discount);
+        }
+
+        public int GetAgeOfVehicle()
+        {
+            int n = DateTimeExtention.Age(d);
+            return n;
+        }
+
+        public static void GetAmountOfCars()
+        {
+            Console.WriteLine($"Amount of Cars: {AmountOfCars} ");
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Vehicle v)
+            {
+                if (v.Model == Model && v.YearOfIssue == YearOfIssue && v.Price == Price && v.Color == Color)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
         }
     }
 
-    public partial class Vehicle
+    public abstract partial class Vehicle
     {
         public override string ToString()
         {
             return "Vehicle: " + " " + Model + " " + YearOfIssue + " " + Price + " " + Color;
         }
 
-        public bool Equals(Vehicle v)
+        public static bool operator <(Vehicle v1, Vehicle v2)
         {
-            if (Model == v.Model && YearOfIssue == v.YearOfIssue)
+            if (v1.Price < v2.Price)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator >(Vehicle v1, Vehicle v2)
+        {
+            if (v1.Price > v2.Price)
                 return true;
             else
                 return false;

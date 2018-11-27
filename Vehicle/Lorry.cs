@@ -19,5 +19,10 @@ namespace Vehicle
         {
             return MaxCapacity;
         }
+
+        public void GetMileage(int MileAge = 0)
+        {
+            Console.WriteLine($"MileAge is: {MileAge}");
+        }
     }
 }
